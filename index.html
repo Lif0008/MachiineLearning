@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Classifier</title>
+link{{ url_for('static', filename='css/main.css') }}
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 40px;
+text-align: center;
+background-color: #f9f9f9;
+}
+
+    form {
+        margin-top: 40px;
+        display: inline-block;
+        text-align: left;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 50px;
+        border: 1px solid #FF3737; /* Red border */
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background-color: #FFF0F0; /* Light red background */
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #8B0A0A; /* Dark red text */
+    }
+    
+    input[type="text"] {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 20px;
+        padding: 5px;
+        border: 1px solid #FF3737; /* Red border */
+    }
+    
+    select {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 20px;
+        padding: 5px;
+        border: 1px solid #FF3737; /* Red border */
+    }
+    
+    button[type="submit"] {
+        width: 100%;
+        height: 40px;
+        background-color: #FF0000; /* Red background */
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button[type="submit"]:hover {
+        background-color: #8B0A0A; /* Dark red hover */
+    }
+    
+    h1 {
+        color: #FF0000; /* Red heading */
+    }
+    
+    h2 {
+        margin-top: 20px;
+        color: #FF0000; /* Red heading */
+    }
+</style>
+
+</head>
+<body>
+<h1>ML Model Classifier</h1>
+<form method="POST" action="/predict">
+<label for="clump_thickness">Clump Thickness:</label>
+<input type="text" id="clump_thickness" name="clump_thickness" required>
+
+
+<label for="uniformity_cell_size">Uniformity Cell Size:</label>
+<input type="text" id="uniformity_cell_size" name="uniformity_cell_size" required>
+
+
+<label for="uniformity_cell_shape">Uniformity Cell Shape:</label>
+<input type="text" id="uniformity_cell_shape" name="uniformity_cell_shape" required>
+
+
+<label for="marginal_adhesion">Marginal Adhesion:</label>
+<input type="text" id="marginal_adhesion" name="marginal_adhesion" required>
+
+
+<label for="single_epithelial_cell_size">Single Epithelial Cell Size:</label>
+<input type="text" id="single_epithelial_cell_size" name="single_epithelial_cell_size" required>
+<label for="bland_chromatin">Bland Chromatin:</label>
+<input type="text" id="bland_chromatin" name="bland_chromatin" required>
+
+
+<label for="normal_nucleoli">Normal Nucleoli:</label>
+<input type="text" id="normal_nucleoli" name="normal_nucleoli" required>
+
+
+<label for="mitoses">Mitoses:</label>
+<input type="text" id="mitoses" name="mitoses" required>
+
+
+<label for="classifier">Select Classifier:</label>
+<select name="classifier" id="classifier">
+<option value="knn">Nearest Neighbor</option>
+<option value="nb">Naïve Bayes</option>
+<option value="dt">Decision Tree</option>
+</select>
+
+
+<button type="submit">Classify</button>
+</form>
+{% if prediction %}
+<h2>Prediction: {{ prediction }}</h2>
+{% endif %}
+</body>
+</html>
